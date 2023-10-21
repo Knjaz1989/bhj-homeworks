@@ -1,7 +1,17 @@
 const modal = document.getElementById("subscribe-modal");
 const modalClose = document.querySelector(".modal__close");
+const cookieName = "modalClosed";
 
-const modalClosed = localStorage.getItem("modalClosed");
+const modalClosed = getCookieValue(cookieName);
+
+
+function getCookieValue (name) {
+  let cookies = document.cookie.split("; ");
+  let cookie = cookies.find(c => c.startsWith(name + "="));
+  if (cookie) {
+    return cookie.substring(name.length + 1);
+  }
+}
 
 
 if (modalClosed !== "true") {
@@ -9,6 +19,6 @@ if (modalClosed !== "true") {
 }
 
 modalClose.addEventListener("click", () => {
-  localStorage.modalClosed = true;
+  document.cookie = cookieName + "=true";
   modal.classList.remove("modal_active");
 });
