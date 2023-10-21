@@ -5,7 +5,7 @@ const input = form.querySelector("#task__input");
 
 form.addEventListener("submit", event => {
     event.preventDefault();
-    let inputValue = input.value
+    let inputValue = input.value.trim();
     if (inputValue) {
         let task = document.createElement("div");
         let taskTitle = document.createElement("div");
